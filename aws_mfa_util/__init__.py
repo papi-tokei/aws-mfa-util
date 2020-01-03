@@ -15,10 +15,7 @@ except ImportError:
 
 def main():
     profile_list: List[str] = make_credential_str_list(AWS_CREDENTIAL_PATH)
-    print(profile_list)
-
     aws_credential_dict: Dict[str, AwsCredential] = convert_aws_credential(profile_list)
-    print(aws_credential_dict)
 
     # ========================================
     # プロファイルを新規作成するか、更新するかを質問する
@@ -83,6 +80,8 @@ def main():
             new_aws_mfa_credential.profile_name
         ] = new_aws_mfa_credential
 
+        final_message: str = 'MFA用プロファイルの新規作成が完了しました。'
+
     elif action_answers['select_action'] == 'MFA用プロファイルの認証情報を更新':
         # if: 既存のMFAプロファイルの情報を更新する
 
@@ -122,10 +121,14 @@ def main():
             session_credential['aws_secret_access_key'],
         )
 
+        final_message = 'MFA用プロファイルの認証情報更新が完了しました。'
+
     # 最終的なプロファイル情報をファイルに書き込む
     with open(AWS_CREDENTIAL_PATH, mode='w') as fd:
         for credential in aws_credential_dict.values():
             fd.write(credential.export_string() + '\n')
+    
+    print(final_message)
 
 
 if __name__ == '__main__':
