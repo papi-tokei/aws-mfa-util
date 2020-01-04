@@ -4,3 +4,5 @@ out.txt
 build
 dist
 aws_mfa_util.egg-info
+.eggs
+.coverage
