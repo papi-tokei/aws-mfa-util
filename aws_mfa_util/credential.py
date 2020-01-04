@@ -24,6 +24,7 @@ class AwsCredential:
     __output: str = ''
     __region: str = ''
     __mfa_serial: str = ''
+    __aws_session_token: str = ''
 
     @property
     def profile_name(self) -> str:
@@ -63,6 +64,7 @@ class AwsCredential:
         return {
             'aws_access_key_id': response['Credentials']['AccessKeyId'],
             'aws_secret_access_key': response['Credentials']['SecretAccessKey'],
+            'aws_session_token': response['Credentials']['SessionToken']
         }
 
     def export_string(self) -> str:
@@ -76,11 +78,14 @@ class AwsCredential:
             profile_str += 'region={}\n'.format(self.__region)
         if self.__mfa_serial:
             profile_str += 'mfa_serial={}\n'.format(self.__mfa_serial)
+        if self.__aws_session_token:
+            profile_str += 'aws_session_token={}\n'.format(self.__aws_session_token)
         return profile_str
 
-    def update_credential(self, aws_access_key_id, aws_secret_access_key) -> None:
+    def update_credential(self, aws_access_key_id, aws_secret_access_key, aws_session_token) -> None:
         self.__aws_access_key_id = aws_access_key_id
         self.__aws_secret_access_key = aws_secret_access_key
+        self.__aws_session_token = aws_session_token
 
 
 def convert_credential_dict(credential_dict) -> List[str]:
