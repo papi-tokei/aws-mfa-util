@@ -38,6 +38,9 @@ class AwsCredential:
     def region(self) -> str:
         return self.__region
 
+    def __eq__(self, other):
+        return set(self.__dict__.values()) == set(other.__dict__.values())
+
     def check_mfa_serial(self) -> bool:
         print(self.__mfa_serial)
         if self.__mfa_serial:
