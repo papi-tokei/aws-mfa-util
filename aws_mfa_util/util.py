@@ -50,17 +50,19 @@ def convert_aws_credential(profile_list: List[str]) -> Dict[str, AwsCredential]:
             if 'aws_access_key_id' in part_of_profile:
                 profile_processed_dict['aws_access_key_id'] = part_of_profile.split(
                     '='
-                )[1]
+                )[1].strip()
             if 'aws_secret_access_key' in part_of_profile:
                 profile_processed_dict['aws_secret_access_key'] = part_of_profile.split(
                     '='
-                )[1]
+                )[1].strip()
             if 'output' in part_of_profile:
-                profile_processed_dict['output'] = part_of_profile.split('=')[1]
+                profile_processed_dict['output'] = part_of_profile.split('=')[1].strip()
             if 'region' in part_of_profile:
-                profile_processed_dict['region'] = part_of_profile.split('=')[1]
+                profile_processed_dict['region'] = part_of_profile.split('=')[1].strip()
             if 'mfa_serial' in part_of_profile:
-                profile_processed_dict['mfa_serial'] = part_of_profile.split('=')[1]
+                profile_processed_dict['mfa_serial'] = part_of_profile.split('=')[1].strip()
+            if 'aws_session_token' in part_of_profile:
+                profile_processed_dict['session_token'] = part_of_profile.split('=')[1].strip()
 
         aws_credential_dict[profile_name] = AwsCredential(
             *convert_credential_dict(profile_processed_dict)
