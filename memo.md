@@ -5,15 +5,21 @@
 $ pip install wheel twine setuptools
 
 # ビルド
-$ python setup.py bdist_wheel
+$ make
 
-$ twine upload --repository testpypi dist/*
-$ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+# 前のビルド結果ファイルを削除
+$ make clean
 
+# pypiを更新
+$ make upload
+
+# テスト
+$ make test
 ```
 
-# ローカルインストール
+# デバッグ用
 
 ```
-$ pip install dist/aws-mfa-util-*.tar.gz
+# setup.pyがあるディレクトリで
+$ pip install .
 ```
