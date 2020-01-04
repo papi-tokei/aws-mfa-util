@@ -25,4 +25,6 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
     ],
     python_requires='>=3.6',
+    setup_requires=["pytest-runner"],
+    tests_require=["pytest", "pytest-cov"]
 )
