@@ -5,12 +5,13 @@ with open('README.md', 'r') as fd:
 
 setuptools.setup(
     name='aws-mfa-util',
-    version='0.0.8',
+    version='0.1.0',
     author='hiroya akita',
     author_email='akky.develop@gmail.com',
     description='AWS CLIにMFA適用アカウントを作成・更新するためのツール',
     long_description=long_description,
     long_description_content_type='text/markdown',
+    license='MIT',
     install_requires=['boto3', 'PyInquirer'],
     url='https://github.com/papi-tokei/aws-mfa-util',
     packages=setuptools.find_packages(),
