@@ -11,3 +11,9 @@ $ twine upload --repository testpypi dist/*
 $ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 ```
+
+# ローカルインストール
+
+```
+$ pip install dist/aws-mfa-util-*.tar.gz
+```
